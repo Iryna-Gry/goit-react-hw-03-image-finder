@@ -1,8 +1,6 @@
 import Button from './Button/Button';
 import ImageGallery from './ImageGallery/ImageGallery';
-
 import Loader from './Loader/Loader';
-
 import Searchbar from './Searchbar/Searchbar';
 import { Container } from './Container/Container.styled';
 import { Component } from 'react';
@@ -57,7 +55,7 @@ export class App extends Component {
     }));
   };
   render() {
-    const { status, images, error, showModal } = this.state;
+    const { status, images, error } = this.state;
 
     return (
       <div className={css.App}>

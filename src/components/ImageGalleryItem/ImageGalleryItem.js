@@ -13,7 +13,7 @@ class ImageGalleryItem extends Component {
     });
   };
   render() {
-    const { src, alt, smallImageURL, largeImageURL, id } = this.props;
+    const { src, alt, largeImageURL, id } = this.props;
     return (
       <li className={css.ImageGalleryItem}>
         <img

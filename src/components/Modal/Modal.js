@@ -44,17 +44,3 @@ class Modal extends Component {
 }
 
 export default Modal;
-
-//  const instance = ;
-//   instance.show();
-//   function onEscapePress(event) {
-//     if (event.key === 'Escape') {
-//       instance.close();
-//     }
-//   }
-//   return instance;
-{
-  /* <img src=${event.target.source}
-      alt=${event.target.alt}
-      style="height:90vh; object-fit:contain;" /> */
-}
