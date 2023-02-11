@@ -35,7 +35,6 @@ export class App extends Component {
       }
     }
   }
-
   handleSearchSubmit = async ({ keyword }) => {
     const params = {
       page: 1,
