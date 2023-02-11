@@ -9,7 +9,7 @@ const fetchAPI = async params => {
   if (response.status !== 200 || response.data.totalHits === 0) {
     throw new Error(response);
   }
-  return response;
+  return await response;
 };
 
 export default fetchAPI;

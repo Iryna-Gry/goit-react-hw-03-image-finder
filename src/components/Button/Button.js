@@ -1,9 +1,9 @@
 import React from 'react';
 import css from './Button.module.css';
 
-const Button = () => {
+const Button = ({ onButtonClick }) => {
   return (
-    <button type="submit" className={css.Button}>
+    <button type="submit" className={css.Button} onClick={onButtonClick}>
       Load More
     </button>
   );
