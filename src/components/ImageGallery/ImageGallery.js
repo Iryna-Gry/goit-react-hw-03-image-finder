@@ -2,7 +2,7 @@ import React from 'react';
 import css from './ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ data }) => {
+const ImageGallery = ({ data, onImageClick }) => {
   return (
     <ul className={css.ImageGallery}>
       {data.map(image => {
@@ -13,6 +13,7 @@ const ImageGallery = ({ data }) => {
             name={image.name}
             smallImageURL={image.webformatURL}
             largeImageURL={image.largeImageURL}
+            onImageClick={onImageClick}
           ></ImageGalleryItem>
         );
       })}

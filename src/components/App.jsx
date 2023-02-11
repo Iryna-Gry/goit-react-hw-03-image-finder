@@ -2,7 +2,7 @@ import Button from './Button/Button';
 import ImageGallery from './ImageGallery/ImageGallery';
 
 import Loader from './Loader/Loader';
-import Modal from './Modal/Modal';
+
 import Searchbar from './Searchbar/Searchbar';
 import { Container } from './Container/Container.styled';
 import { Component } from 'react';
@@ -37,6 +37,7 @@ export class App extends Component {
       }
     }
   }
+
   handleSearchSubmit = async ({ keyword }) => {
     const params = {
       page: 1,
@@ -56,7 +57,7 @@ export class App extends Component {
     }));
   };
   render() {
-    const { status, images, error } = this.state;
+    const { status, images, error, showModal } = this.state;
 
     return (
       <div className={css.App}>
@@ -64,7 +65,10 @@ export class App extends Component {
           <Searchbar onFormSubmit={this.handleSearchSubmit}></Searchbar>
           {error && <p>Something went wrong. Please, refresh the page</p>}
           {images.length > 0 ? (
-            <ImageGallery data={images}></ImageGallery>
+            <ImageGallery
+              data={images}
+              onImageClick={this.onToggleModal}
+            ></ImageGallery>
           ) : null}
           {status === 'pending' ? <Loader></Loader> : null}
           {status === 'completed' ? (
