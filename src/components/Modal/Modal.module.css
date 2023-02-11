@@ -12,7 +12,9 @@
 }
 
 .Modal {
-  max-width: 90vw;
-  max-height: 90vh;
+  height: 95vh;
+}
+.Img {
   object-fit: contain;
+  height: 95vh;
 }

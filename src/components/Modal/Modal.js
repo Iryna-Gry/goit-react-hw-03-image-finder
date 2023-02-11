@@ -35,7 +35,7 @@ class Modal extends Component {
         role="presentation"
       >
         <div className={css.Modal}>
-          <img src={largeImageURL} alt="img" id={id} />
+          <img src={largeImageURL} alt="img" id={id} className={css.Img} />
         </div>
       </div>,
       MODAL_ROOT
