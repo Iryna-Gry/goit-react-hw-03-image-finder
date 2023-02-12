@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import css from './ImageGalleryItem.module.css';
 import Modal from '../Modal/Modal';
+import PropTypes from 'prop-types';
 
 class ImageGalleryItem extends Component {
   state = {
@@ -13,19 +14,18 @@ class ImageGalleryItem extends Component {
     });
   };
   render() {
-    const { src, alt, largeImageURL, id } = this.props;
+    const { src, largeImageURL } = this.props;
     return (
       <li className={css.ImageGalleryItem}>
         <img
           src={src}
-          alt={alt}
+          alt=""
           source={largeImageURL}
           className={css['ImageGalleryItem-image']}
           onClick={this.handleModal}
         />
         {this.state.isOpen && (
           <Modal
-            id={id}
             largeImageURL={largeImageURL}
             onClose={this.handleModal}
           ></Modal>
@@ -36,3 +36,8 @@ class ImageGalleryItem extends Component {
 }
 
 export default ImageGalleryItem;
+
+ImageGalleryItem.propTypes = {
+  src: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+};

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import css from './Searchbar.module.css';
 import { AiOutlineSearch } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
 class Searchbar extends Component {
   state = {
@@ -12,7 +13,8 @@ class Searchbar extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onFormSubmit(this.state);
+
+    this.props.onFormSubmit(this.state.keyword.trim());
     this.reset();
   };
   reset = () => {
@@ -42,3 +44,7 @@ class Searchbar extends Component {
 }
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
+};

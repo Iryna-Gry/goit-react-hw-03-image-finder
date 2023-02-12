@@ -12,6 +12,7 @@ export class App extends Component {
     images: [],
     status: 'idle',
     error: null,
+    totalPages: null,
     params: {
       page: null,
       q: '',
@@ -28,6 +29,7 @@ export class App extends Component {
         const response = await fetchAPI(this.state.params);
         this.setState(prevState => ({
           images: [...prevState.images, ...response.data.hits],
+          totalPages: Math.ceil(response.data.totalHits / 12),
           status: 'completed',
         }));
       } catch (error) {
@@ -35,17 +37,20 @@ export class App extends Component {
       }
     }
   }
-  handleSearchSubmit = async ({ keyword }) => {
-    const params = {
-      page: 1,
-      q: keyword.trim(),
-      per_page: 12,
-    };
-    this.setState({
-      params: params,
-    });
+  handleSearchSubmit = keyword => {
+    if (keyword === '') {
+      alert('Searchfield is empty. Please, specify your search request.');
+      return;
+    } else {
+      const params = {
+        page: 1,
+        q: keyword,
+        per_page: 12,
+      };
+      this.setState({ images: [], params: params });
+    }
   };
-  handleButtonLoadMore = async () => {
+  handleButtonLoadMore = () => {
     this.setState(prevState => ({
       params: {
         ...prevState.params,
@@ -54,7 +59,13 @@ export class App extends Component {
     }));
   };
   render() {
-    const { status, images, error } = this.state;
+    const {
+      status,
+      images,
+      error,
+      totalPages,
+      params: { page },
+    } = this.state;
 
     return (
       <div className={css.App}>
@@ -62,13 +73,10 @@ export class App extends Component {
           <Searchbar onFormSubmit={this.handleSearchSubmit}></Searchbar>
           {error && <p>Something went wrong. Please, refresh the page</p>}
           {images.length > 0 ? (
-            <ImageGallery
-              data={images}
-              onImageClick={this.onToggleModal}
-            ></ImageGallery>
+            <ImageGallery data={images}></ImageGallery>
           ) : null}
           {status === 'pending' ? <Loader></Loader> : null}
-          {status === 'completed' ? (
+          {status === 'completed' && totalPages !== page ? (
             <Button onButtonClick={this.handleButtonLoadMore}></Button>
           ) : null}
         </Container>
